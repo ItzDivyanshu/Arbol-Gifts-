@@ -1,4 +1,3 @@
-import React from 'react';
 import { Briefcase, Coffee, Frame, Award, PenTool, BookOpen } from 'lucide-react';
 
 const categories = [

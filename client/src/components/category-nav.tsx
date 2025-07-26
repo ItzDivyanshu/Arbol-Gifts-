@@ -148,9 +148,10 @@ const CategoryNav = () => {
                       <Link
                         key={product}
                         href={`/products?category=${encodeURIComponent(category.name)}&subcategory=${encodeURIComponent(product)}`}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors"
                       >
-                        {product}
+                        <span className="block px-4 py-2 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors">
+                          {product}
+                        </span>
                       </Link>
                     );
                   })}

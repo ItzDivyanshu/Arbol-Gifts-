@@ -80,8 +80,10 @@ const Navbar = () => {
           <button className="text-gray-700 hover:text-primary transition-colors" aria-label="Search">
             <Search size={20} />
           </button>
-          <Link href="/account" className="text-gray-700 hover:text-primary transition-colors" aria-label="Account">
-            <User size={20} />
+          <Link href="/account" aria-label="Account">
+            <span className="text-gray-700 hover:text-primary transition-colors">
+              <User size={20} />
+            </span>
           </Link>
           {/* <Link href="/cart" className="text-gray-700 hover:text-primary transition-colors relative" aria-label="Cart">
             <ShoppingBag size={20} />

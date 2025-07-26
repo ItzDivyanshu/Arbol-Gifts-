@@ -2,13 +2,11 @@ import { useState, useEffect } from "react";
 // import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { ProductCard } from "@/components/product-card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Search, Filter, X } from "lucide-react";
-import type { Product } from "@/products";
 import { products } from "@/products";
 
 // Add fallback category for demo purposes

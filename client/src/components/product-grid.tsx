@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { ProductCard } from "./product-card";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { ProductWithCategory } from "@shared/schema";
+import type { Product } from "@/products";
 import { SectionHeading } from "./ui/section-heading";
 
 interface ProductGridProps {
@@ -19,7 +19,7 @@ export function ProductGrid({
   limit,
   className = ""
 }: ProductGridProps) {
-  const { data: products, isLoading } = useQuery<ProductWithCategory[]>({
+  const { data: products, isLoading } = useQuery<Product[]>({
     queryKey
   });
 

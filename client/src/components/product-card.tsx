@@ -1,27 +1,15 @@
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
-
-import { useToast } from "@/hooks/use-toast";
-import type { ProductWithCategory } from "@shared/schema";
+import type { Product } from "@/products";
 
 interface ProductCardProps {
-  product: ProductWithCategory;
+  product: Product;
   showCategory?: boolean;
 }
 
 export function ProductCard({ product, showCategory = false }: ProductCardProps) {
 
-  const { toast } = useToast();
-
-  const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent navigation when clicking the button
-    e.stopPropagation();
-    
-    
-  };
-
-  const hasDiscount = product.originalPrice && parseFloat(product.originalPrice) > parseFloat(product.price);
+  const hasDiscount = product.discount && product.discount > 0;
 
   return (
     <Link href={`/products/${product.slug}`}>
@@ -38,20 +26,15 @@ export function ProductCard({ product, showCategory = false }: ProductCardProps)
                 SALE
               </Badge>
             )}
-            {product.isBestSelling && (
+            {product.bestseller && (
               <Badge className="absolute top-2 right-2 bg-printo-orange text-white">
                 BESTSELLER
-              </Badge>
-            )}
-            {product.isNewArrival && (
-              <Badge className="absolute top-2 right-2 bg-green-500 text-white">
-                NEW
               </Badge>
             )}
           </div>
           <div className="p-4">
             {showCategory && product.category && (
-              <p className="text-sm text-gray-500 mb-1">{product.category.name}</p>
+              <p className="text-sm text-gray-500 mb-1">{product.category}</p>
             )}
             <h3 className="font-semibold text-gray-800 mb-2 line-clamp-1">{product.name}</h3>
             <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
@@ -59,10 +42,9 @@ export function ProductCard({ product, showCategory = false }: ProductCardProps)
               <div className="flex items-center space-x-2">
                 <span className="text-printo-orange font-bold text-lg">₹{product.price}</span>
                 {hasDiscount && (
-                  <span className="text-gray-500 line-through text-sm">₹{product.originalPrice}</span>
+                  <span className="text-gray-500 line-through text-sm">₹{(product.price * (1 - product.discount! / 100)).toFixed(2)}</span>
                 )}
               </div>
-              
             </div>
           </div>
         </div>

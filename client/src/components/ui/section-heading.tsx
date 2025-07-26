@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface SectionHeadingProps {
   title: string;
   subtitle?: string;

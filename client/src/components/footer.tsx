@@ -8,10 +8,10 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <Link href="/" className="inline-block mb-4">
-              <div className="bg-printo-orange text-white px-3 py-2 rounded-lg font-bold text-xl">
-                Arbol Gifts
-              </div>
+            <Link href="/">
+              <span className="inline-block mb-4">
+                <span className="text-2xl font-display font-bold text-white">Arbol Gifts</span>
+              </span>
             </Link>
             <p className="text-gray-300 mb-4">
               Your trusted partner for professional printing and corporate solutions across India.
@@ -37,28 +37,38 @@ export function Footer() {
             <h3 className="font-semibold text-lg mb-4">Products</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/products?category=business-stationery" className="text-gray-300 hover:text-printo-orange transition-colors">
-                  Business Cards
+                <Link href="/products?category=business-stationery">
+                  <span className="text-gray-300 hover:text-printo-orange transition-colors">   
+                    Business Cards
+                  </span>
                 </Link>
               </li>
               <li>
-                <Link href="/products?category=corporate-gifts" className="text-gray-300 hover:text-printo-orange transition-colors">
-                  Corporate Gifts
+                <Link href="/products?category=corporate-gifts">
+                  <span className="text-gray-300 hover:text-printo-orange transition-colors">       
+                    Corporate Gifts
+                  </span>
                 </Link>
               </li>
               <li>
-                <Link href="/products?category=apparel" className="text-gray-300 hover:text-printo-orange transition-colors">
-                  Custom Apparel
+                <Link href="/products?category=apparel">
+                  <span className="text-gray-300 hover:text-printo-orange transition-colors">
+                    Custom Apparel
+                  </span>
                 </Link>
               </li>
               <li>
-                <Link href="/products" className="text-gray-300 hover:text-printo-orange transition-colors">
-                  Promotional Items
+                <Link href="/products">
+                  <span className="text-gray-300 hover:text-printo-orange transition-colors">
+                    Promotional Items
+                  </span>
                 </Link>
               </li>
               <li>
-                <Link href="/products?category=business-stationery" className="text-gray-300 hover:text-printo-orange transition-colors">
-                  Stationery
+                <Link href="/products?category=business-stationery">
+                  <span className="text-gray-300 hover:text-printo-orange transition-colors">   
+                    Stationery
+                  </span>
                 </Link>
               </li>
             </ul>

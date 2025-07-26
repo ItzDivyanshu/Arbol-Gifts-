@@ -1,5 +1,4 @@
 import { Package, Award, Palette, Tag, Truck } from "lucide-react";
-import { SectionHeading } from "./ui/section-heading";
 
 type Feature = {
   icon: React.ComponentType<{ className?: string }>;
