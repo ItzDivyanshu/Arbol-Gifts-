@@ -181,7 +181,7 @@ export const products: Product[] = [
       // "/id8_9.jpeg",
     ],
     price: 12.99,
-    category: "accessories",
+    category: "photo-gifts",
     rating: 4.7,
     inStock: true,
     discount: 10,
@@ -267,32 +267,12 @@ export const products: Product[] = [
       "/id12_6.jpeg",
     ],
     price: 49.99,
-    category: "office",
+    category: "Sign & Promo",
     rating: 4.9,
     inStock: true,
     discount: 10,
     bestseller: true,
     stockCount: 75,
-    woodTypes: [
-      "Mahogany",
-      "Oak",
-      "Walnut",
-      "Cherry",
-      "Maple"
-    ],
-    sizes: [
-      "Small (6x8 inches)",
-      "Medium (8x10 inches)",
-      "Large (10x12 inches)",
-      "Custom sizes available"
-    ],
-    popularUses: [
-      "Employee recognition",
-      "Retirement gifts",
-      "Anniversaries",
-      "Achievement awards",
-      "Memorial plaques"
-    ]
   },
   {
     id: 13,
@@ -311,7 +291,7 @@ export const products: Product[] = [
      
     ],
     price: 44.99,
-    category: "home-decor",
+    category: "Sign & Promo",
     rating: 4.7,
     inStock: true,
     discount: 15,
@@ -332,7 +312,7 @@ export const products: Product[] = [
       "/id14_5.jpeg",
     ],
     price: 8.99,
-    category: "promotional",
+    category: "Sign & Promo",
     rating: 4.6,
     inStock: true,
     discount: 20,
@@ -350,7 +330,7 @@ export const products: Product[] = [
       "/id15_2.jpeg"
     ],
     price: 34.99,
-    category: "event-giveaways",
+    category: "Sign & Promo",
     rating: 4.9,
     inStock: true,
     discount: 15,

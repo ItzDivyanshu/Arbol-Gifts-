@@ -4,17 +4,22 @@ import { Link } from 'wouter';
 
 // @ts-ignore - Ignore unused variable warning for this component
 
+interface ProductLink {
+  name: string;
+  slug: string;
+}
+
 interface Category {
   name: string;
-  products: string[];
+  products: ProductLink[];
 }
 
 const categories: Category[] = [
   {
     name: "Stationery Gifts",
     products: [
-      "Personalized Diaries / Notebooks",
-      "Engraved Pens",
+      { name: "Personalized Diaries / Notebooks", slug: "personalized-diaries-notebooks" },
+      { name: "Engraved Pens", slug: "elegant-engraved-pens" },
       // "Desk Organizers",
       // "Corporate Planners",
       // "Sticky Note Sets",
@@ -26,9 +31,9 @@ const categories: Category[] = [
   {
     name: "Corporate Gifts",
     products: [
-      "Corporate Gift Sets",
-      "Awards",
-      "Welcome Kits for New Employees",
+      { name: "Corporate Gift Sets", slug: "corporate-gift-sets" },
+      { name: "Awards", slug: "awards" },
+      { name: "Welcome Kits for New Employees", slug: "welcome-kits-new-employees" },
       // "Car Utility Trays",
       // "Branded Umbrellas"
     ]
@@ -36,15 +41,15 @@ const categories: Category[] = [
   {
     name: "Photo Gifts",
     products: [
-      "Photo Mugs (Ceramic, Magic, Travel)",
+      { name: "Photo Mugs (Ceramic, Magic, Travel)", slug: "photo-mugs" },
       // "Photo Cushions / Pillows",
-      "Photo Frames (Wooden, Collage, Engraved)",
-      // "Rock Slates / Tiles",
-      // "Personalized Photo Lamps (LED, Illusion)",
-      // "Explosion Boxes / Scrapbooks",
-      // "Photo Calendars",
-      // "Photo Magnets",
-      "Photo Keychains",
+      { name: "Photo Frames (Wooden, Collage, Engraved)", slug: "photo-frames" },
+      // { name: "Rock Slates / Tiles", slug: "rock-slates-tiles" },
+      // { name: "Personalized Photo Lamps (LED, Illusion)", slug: "photo-lamps" },
+      // { name: "Explosion Boxes / Scrapbooks", slug: "explosion-boxes" },
+      // { name: "Photo Calendars", slug: "photo-calendars" },
+      // { name: "Photo Magnets", slug: "photo-magnets" },
+      { name: "Photo Keychains", slug: "photo-keychains" },
       // "Photo T-Shirts / Apparel",
       // "Photo Puzzles"
     ]
@@ -52,22 +57,22 @@ const categories: Category[] = [
   {
     name: "Drinkware",
     products: [
-      "Personalized Mugs (Ceramic, Magic, Steel)",
-      // "Sipper Bottles (Metal, Plastic)",
-      // "Branded Coffee Mugs",
-      // "Branded Tumblers / Travel Mugs",
-      "Water Bottles (Steel / Plastic)"
+      { name: "Personalized Mugs (Ceramic, Magic, Steel)", slug: "personalized-mugs" },
+      // { name: "Sipper Bottles (Metal, Plastic)", slug: "sipper-bottles" },
+      // { name: "Branded Coffee Mugs", slug: "branded-coffee-mugs" },
+      // { name: "Branded Tumblers / Travel Mugs", slug: "branded-tumblers" },
+      { name: "Water Bottles (Steel / Plastic)", slug: "water-bottles" }
     ]
   },
   {
     name: "Signs & Promo",
     products: [
-      "Personalized Name Plates",
-      "Engraved Wooden Plaques",
-      "Customized Clocks",
-      "Promotional Keychains",
-      // "Branded Merchandise",
-      "Wooden Event Cards"
+      { name: "Personalized Name Plates", slug: "personalized-name-plates" },
+      { name: "Engraved Wooden Plaques", slug: "engraved-wooden-plaques" },
+      { name: "Customized Clocks", slug: "customized-clocks" },
+      { name: "Promotional Keychains", slug: "promotional-keychains" },
+      // { name: "Branded Merchandise", slug: "branded-merchandise" },
+      { name: "Wooden Event Cards", slug: "wooden-engraved-event-cards" }
     ]
   },
   // {
@@ -106,7 +111,6 @@ const categories: Category[] = [
 
 const CategoryNav = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const [mobileCategory] = useState('');
 
   const handleMouseEnter = (category: string) => {
     setActiveCategory(category);
@@ -114,13 +118,6 @@ const CategoryNav = () => {
 
   const handleMouseLeave = () => {
     setActiveCategory(null);
-  };
-
-  const handleMobileCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    if (value) {
-      window.location.href = `/category/${encodeURIComponent(value.toLowerCase().replace(/\s+/g, '-'))}`;
-    }
   };
 
   return (
@@ -141,39 +138,19 @@ const CategoryNav = () => {
               
               {activeCategory === category.name && (
                 <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-lg py-2 z-50">
-                  {category.products.map((product) => {
-                    // Slug is generated but not used, keeping for future reference
-                    // const slug = product.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                    return (
-                      <Link
-                        key={product}
-                        href={`/products?category=${encodeURIComponent(category.name)}&subcategory=${encodeURIComponent(product)}`}
-                      >
+                  {category.products.map((product) => (
+                    <div key={product.slug} className="block">
+                      <Link href={`/products/${product.slug}`}>
                         <span className="block px-4 py-2 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors">
-                          {product}
+                          {product.name}
                         </span>
                       </Link>
-                    );
-                  })}
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
           ))}
-        </div>
-        
-        <div className="lg:hidden px-4 py-3">
-          <select 
-            value={mobileCategory}
-            onChange={handleMobileCategoryChange}
-            className="w-full p-2 border border-gray-200 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-          >
-            <option value="">Shop by Category</option>
-            {categories.map((category) => (
-              <option key={category.name} value={category.name}>
-                {category.name}
-              </option>
-            ))}
-          </select>
         </div>
       </div>
     </div>

@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Search, User } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link } from 'wouter';
 
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
 
 
   useEffect(() => {
@@ -18,10 +22,10 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-16 flex items-center ${
-      isScrolled ? 'bg-white shadow-soft' : 'bg-white/90 backdrop-blur-sm'
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-16 flex items-center bg-white lg:bg-white/90 lg:backdrop-blur-sm ${
+      isScrolled ? 'shadow-soft' : ''
     }`}>
-      <div className="w-full container mx-auto px-4 flex justify-between items-center">
+      <div className="w-full container mx-auto px-4 flex justify-between items-center h-full">
         <div className="flex items-center">
           <button 
             className="lg:hidden mr-4 text-gray-700 hover:text-primary transition-colors"
@@ -31,35 +35,26 @@ const Navbar = () => {
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
           <Link href="/">
-  <span className="text-2xl font-display font-bold text-gray-800">Arbol Gifts</span>
-</Link>
+            <span className="text-2xl font-display font-bold text-gray-800">Arbol Gifts</span>
+          </Link>
         </div>
         
-        <div className={`fixed inset-0 bg-white z-40 lg:static lg:bg-transparent lg:flex ${
-          isMenuOpen ? 'flex flex-col pt-20 px-6' : 'hidden'
+        <div className={`fixed top-16 left-0 right-0 bg-white z-40 lg:static lg:bg-transparent lg:flex lg:items-center ${
+          isMenuOpen ? 'block' : 'hidden'
         }`}>
-          {isMenuOpen && (
-            <button 
-              className="absolute top-4 right-4 lg:hidden text-gray-700 hover:text-primary transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-              aria-label="Close menu"
-            >
-              <X size={24} />
-            </button>
-          )}
-          <ul className={`flex ${isMenuOpen ? 'flex-col space-y-4' : 'lg:flex-row lg:space-x-8'} lg:items-center`}>
+          <ul className={`w-full lg:w-auto flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-8 py-4 lg:py-0`}>
             <li>
-              <Link href="/">
+              <Link href="/" onClick={closeMenu}>
   <span className="text-gray-700 hover:text-primary font-medium transition-colors">Home</span>
 </Link>
             </li>
             <li>
-              <Link href="/products">
+              <Link href="/products" onClick={closeMenu}>
   <span className="text-gray-700 hover:text-primary font-medium transition-colors">All Products</span>
 </Link>
             </li>
             <li>
-              <Link href="/about">
+              <Link href="/about" onClick={closeMenu}>
   <span className="text-gray-700 hover:text-primary font-medium transition-colors">About Us</span>
 </Link>
             </li>
@@ -69,7 +64,7 @@ const Navbar = () => {
 </Link>
             </li> */}
             <li>
-              <Link href="/contact">
+              <Link href="/contact" onClick={closeMenu}>
   <span className="text-gray-700 hover:text-primary font-medium transition-colors">Contact Us</span>
 </Link>
             </li>
@@ -77,14 +72,14 @@ const Navbar = () => {
         </div>
         
         <div className="flex items-center space-x-6">
-          <button className="text-gray-700 hover:text-primary transition-colors" aria-label="Search">
+          {/* <button className="text-gray-700 hover:text-primary transition-colors" aria-label="Search">
             <Search size={20} />
           </button>
           <Link href="/account" aria-label="Account">
             <span className="text-gray-700 hover:text-primary transition-colors">
               <User size={20} />
             </span>
-          </Link>
+          </Link> */}
           {/* <Link href="/cart" className="text-gray-700 hover:text-primary transition-colors relative" aria-label="Cart">
             <ShoppingBag size={20} />
             {totalItems > 0 && (

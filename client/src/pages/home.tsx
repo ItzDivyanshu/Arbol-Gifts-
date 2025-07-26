@@ -58,9 +58,9 @@ export default function Home() {
                 Browse Products
               </Button>
             </Link>
-            <Button variant="outline" className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-printo-orange transition-colors duration-300">
+            {/* <Button variant="outline" className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-printo-orange transition-colors duration-300">
               Contact Sales Team
-            </Button>
+            </Button> */}
           </div>
         </div>
       </section>

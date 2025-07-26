@@ -2,15 +2,14 @@ import { useRoute } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, Heart, Share2, ShoppingCart } from "lucide-react";
-import { Link } from "wouter";
+import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
+import { Link } from "wouter";
 import { products } from "../products";
 
 export default function ProductDetail() {
   const [, params] = useRoute("/products/:slug");
   const slug = params?.slug;
-  const [quantity, setQuantity] = useState(1);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   // Find product by id (as string)
@@ -159,47 +158,28 @@ export default function ProductDetail() {
 
             <Separator />
 
-            {/* Quantity and Add to Cart */}
             <div className="space-y-4">
-              <div className="flex items-center space-x-4">
-                <label htmlFor="quantity" className="font-medium">Quantity:</label>
-                <div className="flex items-center border rounded-lg">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    disabled={quantity <= 1}
-                  >
-                    -
-                  </Button>
-                  <span className="px-4 py-2 min-w-12 text-center">{quantity}</span>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setQuantity(quantity + 1)}
-                    disabled={product.stockCount ? quantity >= product.stockCount : false}
-                  >
-                    +
-                  </Button>
-                </div>
-              </div>
+              {/* WhatsApp Order Button */}
+              <a 
+                href={`https://wa.me/919999999999?text=Hi!%20I%20would%20like%20to%20order%20${encodeURIComponent(product.name)}%20(${window.location.href})`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg w-full"
+              >
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.5 14.4l-2.2-2.2c-.2-.2-.5-.2-.7 0l-1.3 1.3c-.2.2-.5.2-.7 0-1.1-1.1-1.1-2.8 0-3.9.2-.2.2-.5 0-.7l1.3-1.3c.2-.2.2-.5 0-.7l-2.2-2.2c-.2-.2-.5-.2-.7 0l-1.6 1.6c-.5.5-.8 1.1-.9 1.8-.3 1.5.3 3 1.5 4.2 1.2 1.2 2.8 1.8 4.4 1.5.7-.1 1.3-.4 1.8-.9l1.6-1.6c.2-.2.2-.5 0-.7z"/>
+                  <path d="M12 2C6.5 2 2 6.5 2 12c0 2.1.7 4.1 1.9 5.8l-1.3 3.7 3.8-1.3c1.6 1 3.5 1.5 5.5 1.5 5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
+                </svg>
+                Place Your Order On WhatsApp
+              </a>
 
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button 
-                  className="flex-1 bg-orange-600 hover:bg-orange-500 text-white py-3"
-                >
-                  <ShoppingCart className="w-4 h-4 mr-2" />
-                  Add to Cart
-                </Button>
-                <Button variant="outline" size="lg" className="border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
-                  <Heart className="w-4 h-4 mr-2" />
-                  Wishlist
-                </Button>
+              {/* Share Button */}
+              {/* <div className="flex justify-end">
                 <Button variant="outline" size="lg">
                   <Share2 className="w-4 h-4 mr-2" />
                   Share
                 </Button>
-              </div>
+              </div> */}
             </div>
 
             {/* Features */}

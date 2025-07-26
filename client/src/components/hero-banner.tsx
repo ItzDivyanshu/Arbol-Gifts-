@@ -105,7 +105,7 @@ export function HeroBanner() {
 
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white rounded-full p-2 backdrop-blur-sm transition-all duration-300"
+          className="absolute left-4 top-[85%] -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white rounded-full p-2 backdrop-blur-sm transition-all duration-300"
           aria-label="Previous slide"
         >
           <ChevronLeft size={24} />
@@ -113,12 +113,11 @@ export function HeroBanner() {
 
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white rounded-full p-2 backdrop-blur-sm transition-all duration-300"
+          className="absolute right-4 top-[85%] -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white rounded-full p-2 backdrop-blur-sm transition-all duration-300"
           aria-label="Next slide"
         >
           <ChevronRight size={24} />
         </button>
-
 
         <div className="absolute bottom-6 left-0 right-0 flex justify-center space-x-2 z-20">
           {slides.map((_, index) => (
