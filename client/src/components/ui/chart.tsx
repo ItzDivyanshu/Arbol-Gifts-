@@ -18,6 +18,9 @@ interface ChartContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerProps>(
   ({ className, children, ...props }, ref) => {
+    // Ensure children is a single React element
+    const chartElement = React.Children.only(children) as React.ReactElement
+    
     return (
       <div
         ref={ref}
@@ -25,7 +28,7 @@ const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerProps>(
         {...props}
       >
         <Recharts.ResponsiveContainer width="100%" height="100%">
-          {children}
+          {chartElement}
         </Recharts.ResponsiveContainer>
       </div>
     )
